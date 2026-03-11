@@ -1,0 +1,56 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  disabled = false,
+  fullWidth = false,
+  class: className = '',
+} = Astro.props;
+
+const baseClasses = `
+  inline-flex items-center justify-center gap-2 font-mono font-bold uppercase tracking-widest
+  border-2 transition-all duration-150 cursor-pointer select-none
+  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-stone-950
+  disabled:opacity-40 disabled:cursor-not-allowed
+`;
+
+const variantClasses = {
+  primary:   'bg-amber-400 border-amber-400 text-stone-950 hover:bg-amber-300 hover:border-amber-300 focus:ring-amber-400 active:scale-95',
+  secondary: 'bg-transparent border-stone-400 text-stone-200 hover:border-amber-400 hover:text-amber-400 focus:ring-stone-400 active:scale-95',
+  ghost:     'bg-transparent border-transparent text-stone-400 hover:text-stone-100 hover:border-stone-700 focus:ring-stone-600 active:scale-95',
+  danger:    'bg-red-600 border-red-600 text-white hover:bg-red-500 hover:border-red-500 focus:ring-red-500 active:scale-95',
+};
+
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-xs',
+  md: 'px-5 py-2.5 text-xs',
+  lg: 'px-8 py-4 text-sm',
+};
+
+const widthClass = fullWidth ? 'w-full' : '';
+
+const allClasses = [baseClasses, variantClasses[variant], sizeClasses[size], widthClass, className]
+  .join(' ')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+    href={href}
+    disabled={!href ? disabled : undefined}
+    aria-disabled={disabled}
+    class={allClasses}>
+    <slot/>
+</Tag>

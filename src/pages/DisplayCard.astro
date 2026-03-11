@@ -1,0 +1,50 @@
+---
+import Card from "../components/Card.astro"
+---
+
+<section class="p-[20px] relative py-[65px]
+               before:content-[''] before:absolute before:bottom-0 before:left-0 
+               before:w-full before:h-[1px] 
+               before:bg-gradient-to-r before:from-black before:via-gray-500 before:to-black">
+    <div class="flex flex-col">
+        <div class="p-[40px]">
+            <p class="text-[11px] text-[#6D6762] font-mono">02 - COMPONENT</p>
+            <h2 class="text-white text-[30px] md:text-[48px] font-playfair">Cards</h2>
+            <p class="text-[#A8A29E] font-mono">Responsive cards using tailwind and typescript.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6 px-[40px] pt-[2px] pb-[40px] place-items-center">
+            <Card 
+                title="Responsive Grid"
+                subtitle="Tailwind CSS"
+                tag="NEW"
+                accent="amber"
+                href="/articles/grid"
+                image="">
+                Build fluid, responsive layouts using Tailwind's grid utilities. Columns collapse gracefully across every breakpoint.
+                <div slot="footer">Footer content</div>
+            </Card>
+            <Card 
+                title="TypeScript Props"
+                subtitle="ASTRO + TS"
+                tag="FEATURED"
+                accent="rose"
+                href="/articles/grid"
+                image="">
+                Define typed interfaces for component props to get IDE autocompletion and compile-time safety in your Astro components.
+                <div slot="footer">Footer content</div>
+            </Card>
+            <Card 
+                title="Responsive Grid"
+                subtitle="Tailwind CSS"
+                tag="NEW"
+                accent="emerald"
+                href="/articles/grid"
+                image="">
+                Build fluid, responsive layouts using Tailwind's grid utilities. Columns collapse gracefully across every breakpoint.
+                <div slot="footer">Footer content</div>
+            </Card>
+        </div>
+        
+    </div>
+
+</section>

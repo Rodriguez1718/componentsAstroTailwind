@@ -1,0 +1,107 @@
+---
+/**
+ * Card Component
+ * Props:
+ *   - title: string
+ *   - subtitle?: string
+ *   - tag?: string         (e.g. "NEW", "FEATURED")
+ *   - image?: string       (URL)
+ *   - imageAlt?: string
+ *   - href?: string        (makes card clickable)
+ *   - accent?: 'amber' | 'sky' | 'rose' | 'emerald'
+ *
+ * Slots:
+ *   - default: card body content
+ *   - footer:  card footer content
+ */
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  tag?: string;
+  image?: string;
+  imageAlt?: string;
+  href?: string;
+  accent?: 'amber' | 'sky' | 'rose' | 'emerald';
+}
+
+const {
+  title,
+  subtitle,
+  tag,
+  image,
+  imageAlt = '',
+  href,
+  accent = 'amber',
+} = Astro.props;
+
+const accentBorder = {
+  amber:   'border-amber-400',
+  sky:     'border-sky-400',
+  rose:    'border-rose-400',
+  emerald: 'border-emerald-400',
+};
+
+const accentText = {
+  amber:   'text-amber-400',
+  sky:     'text-sky-400',
+  rose:    'text-rose-400',
+  emerald: 'text-emerald-400',
+};
+
+const accentBg = {
+  amber:   'bg-amber-400',
+  sky:     'bg-sky-400',
+  rose:    'bg-rose-400',
+  emerald: 'bg-emerald-400',
+};
+
+const Tag = href ? 'a' : 'article';
+---
+
+<Tag
+  href={href}
+  class={`
+    group block bg-stone-900 border border-stone-800 border-l-2 ${accentBorder[accent]}
+    transition-all duration-200
+    ${href ? 'hover:bg-stone-800 hover:border-stone-700 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/50 cursor-pointer' : ''}
+  `}
+>
+  {image && (
+    <div class="overflow-hidden aspect-video">
+      <img
+        src={image}
+        alt={imageAlt}
+        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
+      />
+    </div>
+  )}
+
+  <div class="p-6">
+    {tag && (
+      <span class={`inline-block font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 mb-4 ${accentBg[accent]} text-stone-950`}>
+        {tag}
+      </span>
+    )}
+
+    <h3 class="font-serif text-xl text-stone-100 leading-snug mb-1 group-hover:text-white transition-colors">
+      {title}
+    </h3>
+
+    {subtitle && (
+      <p class={`font-mono text-xs uppercase tracking-wider mb-4 ${accentText[accent]}`}>
+        {subtitle}
+      </p>
+    )}
+
+    <div class="text-stone-400 text-sm leading-relaxed mt-3">
+      <slot />
+    </div>
+  </div>
+
+  {Astro.slots.has('footer') && (
+    <div class="px-6 pb-6 pt-0 border-t border-stone-800 mt-2">
+      <slot name="footer" />
+    </div>
+  )}
+</Tag>

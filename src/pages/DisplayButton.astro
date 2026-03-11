@@ -1,0 +1,75 @@
+---
+import Button from "../components/Button.astro"
+---
+
+<section class="p-[20px] relative py-[65px]
+               before:content-[''] before:absolute before:bottom-0 before:left-0 
+               before:w-full before:h-[1px] 
+               before:bg-gradient-to-r before:from-black before:via-gray-500 before:to-black">
+    <div class="flex flex-col">
+        <div class="p-[40px]">
+            <p class="text-[11px] text-[#6D6762] font-mono">01 - COMPONENT</p>
+            <h2 class="text-white text-[30px] md:text-[48px] font-playfair">Button</h2>
+            <p class="text-[#A8A29E] font-mono">Four variants × three sizes. Accepts an optional href prop to render as an anchor tag, and supports disabled and fullWidth props.</p>
+        </div>
+        <div class="px-[40px] pt-[40px] pb-[10px]">
+            <p class="text-[11px] text-[#6D6762] font-mono">VARIANT PROP</p>
+        </div>
+        <div class="grid md:grid-cols-5 gap-2 px-[40px] pt-[2px] pb-[40px] place-items-center">
+            <Button 
+                variant="primary"
+                size="lg"
+                href="">
+                Primary
+            </Button>
+            <Button 
+                variant="secondary"
+                size="lg"
+                href="">
+                Secondary
+            </Button>
+            <Button 
+                variant="ghost"
+                size="lg"
+                href="">
+                Ghost
+            </Button>
+            <Button 
+                variant="danger"
+                size="lg"
+                href="">
+                Danger
+            </Button>
+            <Button 
+                variant="danger"
+                disabled
+                size="lg"
+                href="">
+                Disabled
+            </Button>
+        </div>
+        <div class="px-[40px] pt-[40px] pb-[10px]">
+            <p class="text-[11px] text-[#6D6762] font-mono">SIZE PROP</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-2 px-[40px] pt-[2px] pb-[40px] place-items-center">
+            <Button 
+                variant="secondary"
+                size="sm"
+                href="">
+                sm
+            </Button>
+            <Button 
+                variant="secondary"
+                size="md"
+                href="">
+                md
+            </Button>
+            <Button 
+                variant="secondary"
+                size="lg"
+                href="">
+                lg
+            </Button>
+        </div>
+    </div>
+</section>
