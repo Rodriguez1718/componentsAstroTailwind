@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  tag?: string;
+  accent?: "amber" | "rose" | "emerald" | "sky";
+}
+
+const { title, subtitle, tag, accent = "amber" } = Astro.props;
+
+const accentBorder = {
+  amber:   'border-l-amber-400',
+  sky:     'border-l-sky-400',
+  rose:    'border-l-rose-400',
+  emerald: 'border-l-emerald-400',
+};
+
+const accentText = {
+  amber: "text-amber-400",
+  rose: "text-rose-400",
+  emerald: "text-emerald-400",
+  sky: "text-sky-400",
+};
+
+const accentBg = {
+  amber: "bg-amber-400",
+  rose: "bg-rose-400",
+  emerald: "bg-emerald-400",
+  sky: "bg-sky-400",
+};
+---
+
+<div class="h-full">
+  <div class={`border border-stone-800 border-l-4 ${accentBorder[accent]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] cursor-pointer block transition-all duration-200 p-6 h-full`}>
+    {tag && (
+      <span class={`inline-block font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 mb-4 ${accentBg[accent]} text-stone-950`}>
+        {tag}
+      </span>
+    )}
+
+    <h3 class="font-serif text-xl text-stone-100 leading-snug mb-1 group-hover:text-white transition-colors">{title}</h3>
+
+    {subtitle && (
+      <p class={`font-mono text-xs uppercase tracking-wider mb-4 ${accentText[accent]}`}>
+        {subtitle}
+      </p>
+    )}
+
+    <div class="text-stone-400 text-sm leading-relaxed mt-3 flex-grow">
+      <slot />
+    </div>
+  </div>
+</div>

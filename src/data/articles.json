@@ -1,0 +1,23 @@
+[
+  {
+    "accent": "amber",
+    "title": "Responsive Grid",
+    "subTitle": "Tailwind CSS",
+    "description": "Build fluid, responsive layouts using Tailwind's grid utilities. Columns collapse gracefully across every breakpoint.",
+    "tag": "NEW"
+  },
+  {
+    "accent": "rose",
+    "title": "Flexbox Layout",
+    "subTitle": "Tailwind CSS",
+    "description": "Define typed interfaces for component props to get IDE autocompletion and compile-time safety in your Astro components.",
+    "tag": "GUIDE"
+  },
+  {
+    "accent": "emerald",
+    "title": "CSS Animations",
+    "subTitle": "Tailwind CSS",
+    "description": "Add smooth animations to your website.",
+    "tag": "POPULAR"
+  }
+]

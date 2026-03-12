@@ -1,0 +1,40 @@
+---
+import MarkdownCard from "../components/Markdown.astro";
+
+interface MarkdownPost {
+  frontmatter: {
+    title: string;
+    subtitle: string;
+    tag: string;
+    accent: "amber" | "rose" | "emerald" | "sky";
+  };
+  Content: any;
+}
+
+const postModules = import.meta.glob("../content/posts/*.md", { eager: true });
+const posts = Object.values(postModules) as MarkdownPost[];
+---
+
+
+<section id="markdown" class="p-[20px] relative py-[65px]
+               before:content-[''] before:absolute before:bottom-0 before:left-0 
+               before:w-full before:h-[1px] 
+               before:bg-gradient-to-r before:from-black before:via-gray-500 before:to-black">
+  <div class="p-[40px]">
+    <p class="text-[11px] text-[#6D6762] font-mono">04 - COMPONENT</p>
+    <h2 class="text-white text-[30px] md:text-[48px] font-playfair">Markdown</h2>
+    <p class="text-[#A8A29E] font-mono">Markdown content rendered as interactive cards with syntax highlighting and responsive design.</p>
+  </div>          
+  <div class="grid md:grid-cols-3 gap-6 px-[40px] pt-[2px] pb-[40px] place-items-stretch">
+    {posts.map((post) => (
+      <MarkdownCard
+        title={post.frontmatter.title}
+        subtitle={post.frontmatter.subtitle}
+        tag={post.frontmatter.tag}
+        accent={post.frontmatter.accent}
+      >
+        <post.Content />
+      </MarkdownCard>
+    ))}
+  </div>
+</section>

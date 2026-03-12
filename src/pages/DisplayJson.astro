@@ -1,0 +1,20 @@
+---
+import Art from "../components/Article.astro";
+---
+
+<section id="json" class="p-[20px] relative py-[65px]
+               before:content-[''] before:absolute before:bottom-0 before:left-0 
+               before:w-full before:h-[1px] 
+               before:bg-gradient-to-r before:from-black before:via-gray-500 before:to-black">
+    <div class="flex flex-col">
+        <div class="p-[40px]">
+            <p class="text-[11px] text-[#6D6762] font-mono">03 - COMPONENT</p>
+            <h2 class="text-white text-[30px] md:text-[48px] font-playfair">JSON</h2>
+            <p class="text-[#A8A29E] font-mono">Dynamic content cards populated from structured JSON data with responsive grid layout</p>
+        </div>
+        <div class="grid md:grid-cols-1 gap-6 px-[40px] pt-[2px] pb-[40px] place-items-center">
+            <Art>
+            </Art>
+        </div>
+    </div>
+</section>

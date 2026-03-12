@@ -1,0 +1,51 @@
+---
+import articles from "../data/articles.json";
+
+const accentBg = {
+  amber: "bg-amber-400",
+  rose: "bg-rose-400",
+  emerald: "bg-emerald-400"
+};
+
+const accentText = {
+  amber: "text-amber-400",
+  rose: "text-rose-400",
+  emerald: "text-emerald-400"
+};
+
+const accentBorder = {
+  amber:   'border-l-amber-400',
+  sky:     'border-l-sky-400',
+  rose:    'border-l-rose-400',
+  emerald: 'border-l-emerald-400',
+};
+---
+
+<div class="grid md:grid-cols-3 gap-6">
+  {
+    articles.map((article) => (
+      <div class={`border border-stone-800 border-l-4 ${accentBorder[article.accent as keyof typeof accentBorder]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] cursor-pointer block transition-all duration-200`}>
+        <div class="p-6">
+            <span class={`inline-block font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 mb-4 ${accentBg[article.accent as keyof typeof accentBg]} text-stone-950`}>
+                {article.tag}
+            </span>
+            <h3 class="font-serif text-xl text-stone-100 leading-snug mb-1 group-hover:text-white transition-colors ">
+                {article.title}
+            </h3>
+
+            <h2 class={`${accentText[article.accent as keyof typeof accentText]} font-mono uppercase text-[12px]`}>
+                {article.subTitle}
+            </h2>
+
+            <p class="text-stone-400 text-sm leading-relaxed mt-3">
+                {article.description}
+            </p>
+
+            <div class="text-stone-400 text-sm leading-relaxed mt-3">
+                <slot/>
+            </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

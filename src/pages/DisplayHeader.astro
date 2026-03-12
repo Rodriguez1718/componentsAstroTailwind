@@ -1,9 +1,12 @@
 ---
+interface Props {
+  currentPage?: string;
+}
 
-
+const { currentPage } = Astro.props;
 ---
 
-<header class="bg-[black] border-b-[1px] border-b-[grey] p-[20px] 
+<header class="bg-[black] border-b-[1px] border-b-[grey] p-[20px] sticky top-0 z-50
                relative 
                before:content-[''] before:absolute before:top-0 before:left-0 
                before:w-full before:h-[2px] 
@@ -19,10 +22,81 @@
             <span class="text-[13px] text-[grey] pt-[4px] tracking-[2px] font-mono">UI KIT</span>
         </div>
         <div class="md:flex justify-center text-white gap-[2rem] uppercase font-mono hidden">
-            <a href="/" class="">Buttons</a>
-            <a href="">Cards</a>
-            <a href="">Project</a>
-            <a href="">Contact</a>
+            <a href="#buttons" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="buttons">Buttons</a>
+            <a href="#cards" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="cards">Cards</a>
+            <a href="#json" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="json">Json</a>
+            <a href="#markdown" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="markdown">Markdown</a>
+        </div>
+        <div class="flex md:hidden">
+            <button id="mobile-menu-button" class="text-white hover:text-amber-400 transition-colors duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-grey">
+        <div class="flex flex-col py-4 space-y-2">
+            <a href="#buttons" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="buttons">Buttons</a>
+            <a href="#cards" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="cards">Cards</a>
+            <a href="#json" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="json">Json</a>
+            <a href="#markdown" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="markdown">Markdown</a>
         </div>
     </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sections: NodeListOf<HTMLElement> = document.querySelectorAll('section[id]');
+    const navLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    const mobileMenuButton: HTMLButtonElement | null = document.getElementById('mobile-menu-button') as HTMLButtonElement;
+    const mobileMenu: HTMLDivElement | null = document.getElementById('mobile-menu') as HTMLDivElement;
+    const mobileNavLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('.mobile-nav-link');
+    
+    // Mobile menu toggle
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach((link: HTMLAnchorElement) => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
+    
+    const observerOptions: IntersectionObserverInit = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry: IntersectionObserverEntry) => {
+            if (entry.isIntersecting) {
+                const sectionId: string = entry.target.id;
+                
+                // Remove active class from all nav links (desktop and mobile)
+                navLinks.forEach((link: HTMLAnchorElement) => {
+                    link.classList.remove('text-amber-400', 'border-b', 'border-amber-400');
+                });
+                
+                // Add active class to current section's nav links (both desktop and mobile)
+                const activeLinks: NodeListOf<HTMLAnchorElement> = document.querySelectorAll(`[data-section="${sectionId}"]`);
+                activeLinks.forEach((activeLink: HTMLAnchorElement) => {
+                    activeLink.classList.add('text-amber-400', 'border-b', 'border-amber-400');
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections
+    sections.forEach((section: HTMLElement) => {
+        observer.observe(section);
+    });
+});
+</script>

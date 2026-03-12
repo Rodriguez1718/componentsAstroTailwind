@@ -56,6 +56,13 @@ const accentBg = {
   emerald: 'bg-emerald-400',
 };
 
+const accentDecoration = {
+amber: "decoration-amber-400",
+sky: "decoration-sky-400",
+rose: "decoration-rose-400",
+emerald: "decoration-emerald-400"
+}
+
 const Tag = href ? 'a' : 'article';
 ---
 
@@ -100,7 +107,7 @@ const Tag = href ? 'a' : 'article';
   </div>
 
   {Astro.slots.has('footer') && (
-    <div class="px-6 pb-6 pt-0 border-t border-stone-800 mt-2">
+    <div class={`px-6 pb-6 pt-[8px] border-t border-stone-800 mt-2 read-more-wrapper ${accentText[accent]} ${accentDecoration[accent]}`}>
       <slot name="footer" />
     </div>
   )}
