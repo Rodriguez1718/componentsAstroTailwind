@@ -21,11 +21,11 @@ const posts = Object.values(postModules) as MarkdownPost[];
                before:w-full before:h-[1px] 
                before:bg-gradient-to-r before:from-black before:via-gray-500 before:to-black">
   <div class="p-[40px]">
-    <p class="text-[11px] text-[#6D6762] font-mono">04 - COMPONENT</p>
-    <h2 class="text-white text-[30px] md:text-[48px] font-playfair">Markdown</h2>
-    <p class="text-[#A8A29E] font-mono">Markdown content rendered as interactive cards with syntax highlighting and responsive design.</p>
+    <p id="markdown-tinytitle" class="text-[11px] text-[#6D6762] font-mono">04 - COMPONENT</p>
+    <h2 id="markdown-title" class="text-white text-[30px] md:text-[48px] font-playfair">Markdown</h2>
+    <p id="markdown-subtitle" class="text-[#A8A29E] font-mono">Markdown content rendered as interactive cards with syntax highlighting and responsive design.</p>
   </div>          
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-[40px] pt-[2px] pb-[40px] max-w-full">
+  <div id="markdown-component" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-[40px] pt-[2px] pb-[40px] max-w-full">
     {posts.map((post) => (
       <MarkdownCard
         title={post.frontmatter.title}

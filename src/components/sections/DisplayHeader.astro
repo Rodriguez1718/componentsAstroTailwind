@@ -22,6 +22,7 @@ const { currentPage } = Astro.props;
             <span class="text-[13px] text-[grey] pt-[4px] tracking-[2px] font-mono">UI KIT</span>
         </div>
         <div class="md:flex justify-center text-white gap-[2rem] uppercase font-mono hidden">
+            <a href="#home" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="home">Home</a>
             <a href="#buttons" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="buttons">Buttons</a>
             <a href="#cards" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="cards">Cards</a>
             <a href="#json" class="nav-link hover:text-amber-400 transition-colors duration-200" data-section="json">Json</a>
@@ -39,6 +40,7 @@ const { currentPage } = Astro.props;
     <!-- Mobile dropdown menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-grey">
         <div class="flex flex-col py-4 space-y-2">
+            <a href="#home" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="home">Home</a>
             <a href="#buttons" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="buttons">Buttons</a>
             <a href="#cards" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="cards">Cards</a>
             <a href="#json" class="mobile-nav-link px-6 py-2 text-white hover:text-amber-400 hover:bg-stone-900 transition-colors duration-200 font-mono uppercase" data-section="json">Json</a>
