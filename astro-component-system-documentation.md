@@ -511,9 +511,16 @@ html {
 ```
 src/
 ├── components/
+│   ├── sections/
+│   │   ├── DisplayButton.astro
+│   │   ├── DisplayCard.astro
+│   │   ├── DisplayHeader.astro
+│   │   ├── DisplayJson.astro
+│   │   └── DisplayMarkdown.astro
 │   ├── Article.astro
 │   ├── Button.astro
 │   ├── Card.astro
+│   ├── Hero.astro
 │   └── Markdown.astro
 ├── content/
 │   ├── posts/
@@ -524,12 +531,6 @@ src/
 ├── data/
 │   └── articles.json
 ├── pages/
-│   ├── DisplayButton.astro
-│   ├── DisplayCard.astro
-│   ├── DisplayHeader.astro
-│   ├── DisplayJson.astro
-│   ├── DisplayMarkdown.astro
-│   ├── Hero.astro
 │   └── index.astro
 └── styles/
     └── global.css

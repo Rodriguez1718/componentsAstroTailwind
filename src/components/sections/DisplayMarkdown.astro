@@ -1,5 +1,5 @@
 ---
-import MarkdownCard from "../components/Markdown.astro";
+import MarkdownCard from "../Markdown.astro";
 
 interface MarkdownPost {
   frontmatter: {
@@ -11,7 +11,7 @@ interface MarkdownPost {
   Content: any;
 }
 
-const postModules = import.meta.glob("../content/posts/*.md", { eager: true });
+const postModules = import.meta.glob("../../content/posts/*.md", { eager: true });
 const posts = Object.values(postModules) as MarkdownPost[];
 ---
 
