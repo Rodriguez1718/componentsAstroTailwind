@@ -2,11 +2,13 @@
 interface Props {
   title: string;
   subtitle?: string;
+  description: string;
   tag?: string;
   accent?: "amber" | "rose" | "emerald" | "sky";
+  href?: string;
 }
 
-const { title, subtitle, tag, accent = "amber" } = Astro.props;
+const { title, subtitle, description, tag, accent = "amber", href } = Astro.props;
 
 const accentBorder = {
   amber:   'border-l-amber-400',
@@ -28,10 +30,17 @@ const accentBg = {
   emerald: "bg-emerald-400",
   sky: "bg-sky-400",
 };
+
+const accentDecoration = {
+amber: "decoration-amber-400",
+sky: "decoration-sky-400",
+rose: "decoration-rose-400",
+emerald: "decoration-emerald-400"
+}
 ---
 
-<div class="min-w-0 w-full">
-  <div class={`border border-stone-800 border-l-4 ${accentBorder[accent]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] cursor-pointer block transition-all duration-200 p-6 w-full min-w-0 h-full`}>
+<div class="h-full">
+  <a href={href} class={`border border-stone-800 border-l-4 ${accentBorder[accent]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] cursor-pointer block transition-all duration-200 p-6 w-full min-w-0 h-full flex flex-col inline-block`}>
     {tag && (
       <span class={`inline-block font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 mb-3 ${accentBg[accent]} text-stone-950`}>
         {tag}
@@ -46,8 +55,14 @@ const accentBg = {
       </p>
     )}
 
-    <div class="text-stone-400 text-sm leading-relaxed overflow-hidden break-words">
+    {description && (
+      <p class="text-stone-400 text-sm leading-relaxed break-words mb-3">
+        {description}
+      </p>
+    )}
+
+    <div class="text-stone-400 text-sm leading-relaxed break-words flex-grow">
       <slot />
     </div>
-  </div>
+  </a>
 </div>

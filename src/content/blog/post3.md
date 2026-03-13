@@ -1,6 +1,7 @@
 ---
 title: "Design Systems"
 subtitle: "Consistency at Scale"
+description: "Learn how to create a cohesive design system that ensures visual consistency, improves collaboration, and streamlines development through standardized colors, typography, spacing, and reusable UI components."
 tag: "Design"
 accent: "emerald"
 ---

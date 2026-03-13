@@ -1,6 +1,7 @@
 ---
 title: "Modern Web Development"
 subtitle: "Getting Started"
+description: "Dive into the fundamentals of building fast, accessible, and maintainable web applications while exploring the essential tools, technologies, and development workflows used in modern web development."
 tag: "Tutorial"
 accent: "amber"
 ---

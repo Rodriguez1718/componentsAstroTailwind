@@ -1,18 +1,28 @@
 ---
-import MarkdownCard from "../Markdown.astro";
+import MarkdownCard from "../../components/ui/Markdown.astro";
 
 interface MarkdownPost {
   frontmatter: {
     title: string;
     subtitle: string;
+    description: string;
     tag: string;
     accent: "amber" | "rose" | "emerald" | "sky";
   };
   Content: any;
 }
 
-const postModules = import.meta.glob("../../content/posts/*.md", { eager: true });
-const posts = Object.values(postModules) as MarkdownPost[];
+const postModules = import.meta.glob("../../content/blog/*.md", { eager: true });
+const posts = Object.entries(postModules).map(([path, module]) => {
+  const slug = path.split('/').pop()?.replace('.md', '') || '';
+  console.log('Generated slug:', slug, 'from path:', path); // Debug log
+  return {
+    ...(module as MarkdownPost),
+    slug
+  };
+});
+
+console.log('All posts:', posts.map(p => ({ slug: p.slug, title: p.frontmatter.title }))); // Debug log
 ---
 
 
@@ -25,16 +35,20 @@ const posts = Object.values(postModules) as MarkdownPost[];
     <h2 id="markdown-title" class="text-white text-[30px] md:text-[48px] font-playfair">Markdown</h2>
     <p id="markdown-subtitle" class="text-[#A8A29E] font-mono">Markdown content rendered as interactive cards with syntax highlighting and responsive design.</p>
   </div>          
-  <div id="markdown-component" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-[40px] pt-[2px] pb-[40px] max-w-full">
+  <div id="markdown-component" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-[40px] pt-[2px] pb-[40px] max-w-full items-stretch">
     {posts.map((post) => (
       <MarkdownCard
         title={post.frontmatter.title}
         subtitle={post.frontmatter.subtitle}
+        description={post.frontmatter.description}
         tag={post.frontmatter.tag}
         accent={post.frontmatter.accent}
+        href={`/blog/${post.slug}`}
       >
-        <post.Content />
+        <div slot="footer" class="flex justify-between ">
+                    <span class="font-mono uppercase text-[#6d6762] text-[11px]">5 min read</span>
+                    <span class={`font-mono uppercase text-[11px] hover:underline`}>Read more</span>
+                </div>
       </MarkdownCard>
     ))}
   </div>
-</section>

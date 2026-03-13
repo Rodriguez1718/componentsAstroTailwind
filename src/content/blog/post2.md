@@ -1,6 +1,7 @@
 ---
 title: "Advanced Components"
 subtitle: "Building Better"
+description: "Explore how to build advanced and reusable components that scale with your application, focusing on composition patterns, performance optimization, accessibility, and maintainable design systems."
 tag: "Guide"
 accent: "rose"
 ---

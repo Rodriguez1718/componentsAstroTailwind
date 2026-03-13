@@ -1,11 +1,12 @@
 ---
-import DisplayHeader from "../components/sections/DisplayHeader.astro"
+import DisplayHeader from "../components/layout/DisplayHeader.astro"
 import DisplayCard from "../components/sections/DisplayCard.astro"
 import DisplayButton from "../components/sections/DisplayButton.astro";
 import DisplayJson from "../components/sections/DisplayJson.astro";
 import '../styles/global.css';
-import Hero from "../components/Hero.astro";
+import Hero from "../components/sections/DisplayHero.astro";
 import DisplayMarkdown from "../components/sections/DisplayMarkdown.astro";
+import DisplayFooter from "../components/layout/DisplayFooter.astro";
 ---
 
 <html lang="en">
@@ -27,5 +28,6 @@ import DisplayMarkdown from "../components/sections/DisplayMarkdown.astro";
 		<DisplayCard />
 		<DisplayJson />
 		<DisplayMarkdown />
+		<DisplayFooter />
 	</body>
 </html>
