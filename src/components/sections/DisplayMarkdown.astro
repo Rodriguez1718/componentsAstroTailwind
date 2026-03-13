@@ -45,10 +45,15 @@ console.log('All posts:', posts.map(p => ({ slug: p.slug, title: p.frontmatter.t
         accent={post.frontmatter.accent}
         href={`/blog/${post.slug}`}
       >
-        <div slot="footer" class="flex justify-between ">
-                    <span class="font-mono uppercase text-[#6d6762] text-[11px]">5 min read</span>
-                    <span class={`font-mono uppercase text-[11px] hover:underline`}>Read more</span>
-                </div>
+        <div slot="footer" class="flex justify-between items-center">
+          <span class="font-mono uppercase text-[#6d6762] text-[11px]">5 min read</span>
+          <a href={`/blog/${post.slug}`} class={`font-mono uppercase text-[11px] hover:underline transition-colors ${
+            post.frontmatter.accent === 'amber' ? 'text-amber-400 decoration-amber-400' :
+            post.frontmatter.accent === 'rose' ? 'text-rose-400 decoration-rose-400' :
+            post.frontmatter.accent === 'emerald' ? 'text-emerald-400 decoration-emerald-400' :
+            'text-sky-400 decoration-sky-400'
+          }`}>Read more</a>
+        </div>
       </MarkdownCard>
     ))}
   </div>

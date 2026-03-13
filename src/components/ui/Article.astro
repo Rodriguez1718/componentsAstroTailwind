@@ -24,7 +24,7 @@ const accentBorder = {
 <div class="grid md:grid-cols-3 gap-6">
   {
     articles.map((article) => (
-      <div class={`border border-stone-800 border-l-4 ${accentBorder[article.accent as keyof typeof accentBorder]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] cursor-pointer block transition-all duration-200`}>
+      <div class={`border border-stone-800 border-l-4 ${accentBorder[article.accent as keyof typeof accentBorder]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] block transition-all duration-200`}>
         <div class="p-6">
             <span class={`inline-block font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 mb-4 ${accentBg[article.accent as keyof typeof accentBg]} text-stone-950`}>
                 {article.tag}

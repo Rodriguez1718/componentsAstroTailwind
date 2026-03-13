@@ -8,14 +8,14 @@ import Button from "../../components/ui/Button.astro"
                before:bg-gradient-to-r before:from-black before:via-gray-500 before:to-black">
     <div class="flex flex-col">
         <div class="p-[40px]">
-            <p class="text-[11px] text-[#6D6762] font-mono">01 - COMPONENT</p>
-            <h2 class="text-white text-[30px] md:text-[48px] font-playfair">Button</h2>
-            <p class="text-[#A8A29E] font-mono">Four variants × three sizes. Accepts an optional href prop to render as an anchor tag, and supports disabled and fullWidth props.</p>
+            <p id="button-num" class="text-[11px] text-[#6D6762] font-mono">01 - COMPONENT</p>
+            <h2 id="button-title" class="text-white text-[30px] md:text-[48px] font-playfair">Button</h2>
+            <p id="button-des" class="text-[#A8A29E] font-mono">Four variants × three sizes. Accepts an optional href prop to render as an anchor tag, and supports disabled and fullWidth props.</p>
         </div>
         <div class="px-[40px] pt-[40px] pb-[10px]">
-            <p class="text-[11px] text-[#6D6762] font-mono">VARIANT PROP</p>
+            <p id="button-variant-title" class="text-[11px] text-[#6D6762] font-mono">VARIANT PROP</p>
         </div>
-        <div class="grid md:grid-cols-5 gap-2 px-[40px] pt-[2px] pb-[40px] place-items-center">
+        <div id="button-variant" class="grid md:grid-cols-5 gap-2 px-[40px] pt-[2px] pb-[40px] place-items-center">
             <Button 
                 variant="primary"
                 size="lg"
@@ -49,9 +49,9 @@ import Button from "../../components/ui/Button.astro"
             </Button>
         </div>
         <div class="px-[40px] pt-[40px] pb-[10px]">
-            <p class="text-[11px] text-[#6D6762] font-mono">SIZE PROP</p>
+            <p id="button-size-title" class="text-[11px] text-[#6D6762] font-mono">SIZE PROP</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-2 px-[40px] pt-[2px] pb-[40px] place-items-center">
+        <div id="button-size" class="grid md:grid-cols-3 gap-2 px-[40px] pt-[2px] pb-[40px] place-items-center">
             <Button 
                 variant="secondary"
                 size="sm"
@@ -72,9 +72,9 @@ import Button from "../../components/ui/Button.astro"
             </Button>
         </div>
         <div class="px-[40px] pt-[40px] pb-[10px]">
-            <p class="text-[11px] text-[#6D6762] font-mono">FULL WIDTH PROP</p>
+            <p id="button-width-title" class="text-[11px] text-[#6D6762] font-mono">FULL WIDTH PROP</p>
         </div>
-        <div class="grid px-[40px] pt-[2px] pb-[40px] place-items-center">
+        <div id="button-width" class="grid px-[40px] pt-[2px] pb-[40px] place-items-center">
             <Button 
                 variant="primary"
                 size="lg"

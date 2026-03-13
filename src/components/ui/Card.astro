@@ -105,10 +105,4 @@ const Tag = href ? 'a' : 'article';
       <slot />
     </div>
   </div>
-
-  {Astro.slots.has('footer') && (
-    <div class={`px-6 pb-6 pt-[8px] border-t border-stone-800 mt-2 read-more-wrapper ${accentText[accent]} ${accentDecoration[accent]}`}>
-      <slot name="footer" />
-    </div>
-  )}
 </Tag>

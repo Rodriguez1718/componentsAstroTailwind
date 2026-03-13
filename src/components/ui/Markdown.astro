@@ -2,13 +2,24 @@
 interface Props {
   title: string;
   subtitle?: string;
-  description: string;
+  description?: string;
   tag?: string;
   accent?: "amber" | "rose" | "emerald" | "sky";
   href?: string;
+  readTime?: string;
+  showReadMore?: boolean;
 }
 
-const { title, subtitle, description, tag, accent = "amber", href } = Astro.props;
+const { 
+  title, 
+  subtitle, 
+  description, 
+  tag, 
+  accent = "amber", 
+  href, 
+  readTime = "5 min read",
+  showReadMore = true 
+} = Astro.props;
 
 const accentBorder = {
   amber:   'border-l-amber-400',
@@ -32,37 +43,59 @@ const accentBg = {
 };
 
 const accentDecoration = {
-amber: "decoration-amber-400",
-sky: "decoration-sky-400",
-rose: "decoration-rose-400",
-emerald: "decoration-emerald-400"
-}
+  amber: "decoration-amber-400",
+  sky: "decoration-sky-400",
+  rose: "decoration-rose-400",
+  emerald: "decoration-emerald-400"
+};
 ---
 
 <div class="h-full">
-  <a href={href} class={`border border-stone-800 border-l-4 ${accentBorder[accent]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] cursor-pointer block transition-all duration-200 p-6 w-full min-w-0 h-full flex flex-col inline-block`}>
-    {tag && (
-      <span class={`inline-block font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 mb-3 ${accentBg[accent]} text-stone-950`}>
-        {tag}
-      </span>
-    )}
+  <div class={`border border-stone-800 border-l-4 ${accentBorder[accent]} shadow hover:-translate-y-[3px] hover:bg-[#292524] transition bg-[#1C1917] transition-all duration-200 w-full min-w-0 h-full flex flex-col`}>
+    <div class="p-6 flex-grow flex flex-col inline-block">
+      {tag && (
+        <span class={`inline-block font-mono text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 mb-3 ${accentBg[accent]} text-stone-950`}>
+          {tag}
+        </span>
+      )}
 
-    <h3 class="font-serif text-lg text-stone-100 leading-snug mb-1 group-hover:text-white transition-colors break-words">{title}</h3>
+      <h3 class="font-serif text-xl text-stone-100 leading-snug mb-1 group-hover:text-white transition-colors break-words">{title}</h3>
 
-    {subtitle && (
-      <p class={`font-mono text-xs uppercase tracking-wider mb-3 ${accentText[accent]} break-words`}>
-        {subtitle}
-      </p>
-    )}
+      {subtitle && (
+        <p class={`font-mono text-xs uppercase tracking-wider mb-3 ${accentText[accent]} break-words`}>
+          {subtitle}
+        </p>
+      )}
 
-    {description && (
-      <p class="text-stone-400 text-sm leading-relaxed break-words mb-3">
-        {description}
-      </p>
-    )}
+      {description && (
+        <p class="text-stone-400 text-sm leading-relaxed break-words mb-3">
+          {description}
+        </p>
+      )}
 
-    <div class="text-stone-400 text-sm leading-relaxed break-words flex-grow">
-      <slot />
+      <div class="text-stone-400 text-sm leading-relaxed break-words flex-grow">
+        <slot />
+      </div>
     </div>
-  </a>
+    
+    <!-- Default footer or custom slot -->
+    {Astro.slots.has('footer') ? (
+      <div class="px-6 pb-6 pt-2 border-t border-stone-800">
+        <slot name="footer" />
+      </div>
+    ) : (readTime || showReadMore) && (
+      <div class="px-6 pb-6 pt-2 border-t border-stone-800">
+        <div class="flex justify-between items-center">
+          {readTime && (
+            <span class="font-mono uppercase text-stone-500 text-xs">{readTime}</span>
+          )}
+          {showReadMore && href && (
+            <a href={href} class={`font-mono uppercase text-xs hover:underline transition-colors ${accentText[accent]} ${accentDecoration[accent]}`}>
+              Read more
+            </a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
 </div>
